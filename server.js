@@ -15,7 +15,7 @@ app.get('/tareas', (req, res) => {
 });
 
 app.post('/tareas', (req, res) => {
-  const nuevaTarea = req.body;
+  const nuevaTarea = { id: tareas.length + 1, ...req.body };
   tareas.push(nuevaTarea);
   res.status(201).json(nuevaTarea);
 });
