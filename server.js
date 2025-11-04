@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,14 +9,14 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-let tareas = [];
+let tareas = []:
 
 app.get('/tareas', (req, res) => {
   res.json(tareas);
 });
 
 app.post('/tareas', (req, res) => {
-  const nuevaTarea = { id: Date.now(), ...req.body }; // Changed ID generation
+  const nuevaTarea = { id: uuidv4(), ...req.body }; // Change ID generation to UUID
   tareas.push(nuevaTarea);
   res.status(201).json(nuevaTarea);
 });
