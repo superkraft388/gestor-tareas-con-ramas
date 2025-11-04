@@ -15,7 +15,7 @@ app.get('/tareas', (req, res) => {
 });
 
 app.post('/tareas', (req, res) => {
-  const nuevaTarea = { id: tareas.length + 1, ...req.body };
+  const nuevaTarea = { id: Date.now(), ...req.body }; // Changed ID generation
   tareas.push(nuevaTarea);
   res.status(201).json(nuevaTarea);
 });
